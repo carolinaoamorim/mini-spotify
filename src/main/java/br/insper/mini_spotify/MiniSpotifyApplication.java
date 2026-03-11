@@ -1,4 +1,4 @@
-package br.insper.consulta.mini_spotify;
+package br.insper.mini_spotify;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

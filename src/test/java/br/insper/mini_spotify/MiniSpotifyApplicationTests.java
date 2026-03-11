@@ -1,4 +1,4 @@
-package br.insper.consulta.mini_spotify;
+package br.insper.mini_spotify;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
