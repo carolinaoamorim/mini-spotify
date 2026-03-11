@@ -1,1 +1,1 @@
-# Mini - Spoti
+# Mini - Spotify
