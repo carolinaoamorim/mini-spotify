@@ -1,4 +1,37 @@
 package br.insper.mini_spotify.usuario;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
+
+@RestController
 public class UsuarioController {
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @GetMapping("/usuarios")
+    public Collection<Usuario> getUsuarios() {
+        return usuarioService.listarUsuarios();
+    }
+
+    @PostMapping("/usuarios")
+    public Usuario saveUsuario(@RequestBody Usuario usuario) {
+        return usuarioService.criarUsuario(usuario);
+    }
+
+    @GetMapping("/usuarios/{id}")
+    public Usuario getUsuario(@PathVariable Long id) {
+        return usuarioService.getUsuario(id);
+    }
+
+    @PutMapping("/usuarios/{id}")
+    public Usuario atualizarUsuario(@PathVariable Long id, @RequestBody Usuario dados) {
+        return usuarioService.atualizarUsuario(id, dados);
+    }
+
+    @DeleteMapping("/usuario/{id}")
+    public void deleteUsuario(@PathVariable Long id) {
+        usuarioService.deleteUsuario(id);
+    }
 }
