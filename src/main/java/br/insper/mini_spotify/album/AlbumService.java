@@ -1,7 +1,6 @@
 package br.insper.mini_spotify.album;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 import java.util.HashMap;
