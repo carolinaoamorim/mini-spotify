@@ -11,6 +11,8 @@ public class MusicaController {
     @Autowired
     private MusicaService musicaService;
 
+    // rotas obrigatorias
+
     @GetMapping("/musicas")
     public Collection<Musica> getMusicas() {
         return musicaService.listarMusica();
@@ -34,6 +36,12 @@ public class MusicaController {
     @DeleteMapping("/musicas/{id}")
     public void deleteMusica(@PathVariable Long id) {
         musicaService.deleteMusica(id);
+    }
+
+    // reproduzir musica
+    @PostMapping("/musicas/{id}/reproduzir")
+    public Musica reproduzirMusica(@PathVariable Long id, @RequestHeader("X-USER-ID") Long userId) {
+        return musicaService.reproduzirMusica(id, userId);
     }
 
 }
