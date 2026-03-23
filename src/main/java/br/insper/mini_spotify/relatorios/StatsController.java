@@ -15,6 +15,6 @@ public class StatsController {
 
     @GetMapping("/relatorios/top-musicas")
     public List<Top10> getTop10() {
-        return musicaService.getTopMusicas();
+        return musicaService.getTop10();
     }
 }
