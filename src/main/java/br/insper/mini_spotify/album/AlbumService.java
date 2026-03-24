@@ -1,5 +1,8 @@
 package br.insper.mini_spotify.album;
 
+import br.insper.mini_spotify.artista.Artista;
+import br.insper.mini_spotify.artista.ArtistaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -11,10 +14,17 @@ public class AlbumService {
 
     private HashMap<String, Album> albuns = new HashMap<>();
 
+    @Autowired
+    private ArtistaService artistaService;
+
     public Album criarAlbum(Album album) {
         if (album.getTitulo() == null) {
             throw new RuntimeException("Dados inválidos");
         }
+
+        Artista artista = artistaService.getArtista(album.getArtista().getId());
+        album.setArtista(artista);
+
         album.setId(UUID.randomUUID().toString());
         albuns.put(album.getId(), album);
         return album;

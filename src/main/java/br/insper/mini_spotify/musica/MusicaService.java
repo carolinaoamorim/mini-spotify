@@ -1,5 +1,9 @@
 package br.insper.mini_spotify.musica;
 
+import br.insper.mini_spotify.album.Album;
+import br.insper.mini_spotify.album.AlbumService;
+import br.insper.mini_spotify.artista.Artista;
+import br.insper.mini_spotify.artista.ArtistaService;
 import br.insper.mini_spotify.historico.Historico;
 import br.insper.mini_spotify.historico.HistoricoService;
 import br.insper.mini_spotify.relatorios.Top10;
@@ -21,10 +25,22 @@ public class MusicaService {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private ArtistaService artistaService;
+
+    @Autowired
+    private AlbumService albumService;
+
     public Musica criarMusica(Musica musica) {
         if (musica.getTitulo() == null) {
             throw new RuntimeException("Dados inválidos");
         }
+
+        Artista artista = artistaService.getArtista(musica.getArtista().getId());
+        Album album = albumService.getAlbum(musica.getAlbum().getId());
+        musica.setArtista(artista);
+        musica.setAlbum(album);
+
         musica.setId(UUID.randomUUID().toString());
         musica.setTotalReproducoes(0L);
         musicas.put(musica.getId(), musica);

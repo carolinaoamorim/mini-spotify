@@ -2,6 +2,8 @@ package br.insper.mini_spotify.playlist;
 
 import br.insper.mini_spotify.musica.Musica;
 import br.insper.mini_spotify.musica.MusicaService;
+import br.insper.mini_spotify.usuario.Usuario;
+import br.insper.mini_spotify.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,17 @@ public class PlaylistService {
     @Autowired
     private MusicaService musicaService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     public Playlist criarPlaylist(Playlist playlist) {
         if (playlist.getNome() == null) {
             throw new RuntimeException("Dados inválidos");
         }
+
+        Usuario usuario = usuarioService.getUsuario(playlist.getUsuario().getId());
+        playlist.setUsuario(usuario);
+
         playlist.setId(UUID.randomUUID().toString());
         playlist.setDataCriacao(LocalDateTime.now());
         playlists.put(playlist.getId(), playlist);

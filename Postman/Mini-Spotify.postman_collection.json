@@ -1,0 +1,773 @@
+{
+  "info": {
+    "_postman_id": "62b60247-b8cc-4aaf-a00d-451a3eac0412",
+    "name": "Mini-Spotify",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52953489",
+    "_collection_link": "https://go.postman.co/collection/52953489-62b60247-b8cc-4aaf-a00d-451a3eac0412?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Criar Usuario",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Carolina Amorim\",\n  \"email\": \"carolina@email.com\",\n  \"tipoPlano\": \"PREMIUM\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/usuarios",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "usuarios"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Listar Usuarios",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/usuarios",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "usuarios"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar usuario por id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/usuarios/368e4fc0-1e6a-4d33-aa72-d07c2f6d25f9",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "usuarios",
+            "368e4fc0-1e6a-4d33-aa72-d07c2f6d25f9"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizar usuario",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Carolina Oliveira\",\n  \"email\": \"cahh@email.com\",\n  \"tipoPlano\": \"PREMIUM\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/usuarios/368e4fc0-1e6a-4d33-aa72-d07c2f6d25f9",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "usuarios",
+            "368e4fc0-1e6a-4d33-aa72-d07c2f6d25f9"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Deletar Usuario",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/usuarios/368e4fc0-1e6a-4d33-aa72-d07c2f6d25f9",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "usuarios",
+            "368e4fc0-1e6a-4d33-aa72-d07c2f6d25f9"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar Artista",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Olivia Dean\",\n  \"generoMusical\": \"Jazz\",\n  \"paisOrigem\": \"Inglaterra\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/artistas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "artistas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Listar Artistas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/artistas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "artistas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar artista por id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/artistas/c5216ac9-b291-44f0-a6d7-bfc638bbbb97",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "artistas",
+            "c5216ac9-b291-44f0-a6d7-bfc638bbbb97"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizar Artista",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Olivia Jade Dean\",\n  \"generoMusical\": \"Jazz Classico\",\n  \"paisOrigem\": \"Inglaterra\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/artistas/c5216ac9-b291-44f0-a6d7-bfc638bbbb97",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "artistas",
+            "c5216ac9-b291-44f0-a6d7-bfc638bbbb97"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Deletar Artista",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/artistas/c5216ac9-b291-44f0-a6d7-bfc638bbbb97",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "artistas",
+            "c5216ac9-b291-44f0-a6d7-bfc638bbbb97"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar Album",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"The Art Of Loving\",\n  \"dataLancamento\": \"1969-09-26\",\n  \"artista\": { \"id\": \"c5216ac9-b291-44f0-a6d7-bfc638bbbb97\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/albuns",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "albuns"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Listar Albuns",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/albuns",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "albuns"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar album por id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/albuns/ef4aed9e-6f66-444a-8425-c3327cbe7b5c",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "albuns",
+            "ef4aed9e-6f66-444a-8425-c3327cbe7b5c"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizar Album",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Thra Art Of Loving Deluxe\",\n  \"dataLancamento\": \"1969-09-26\",\n  \"artista\": { \"id\": \"75234860-f8e2-4caa-8547-636c1ff8c02a\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/albuns/ef4aed9e-6f66-444a-8425-c3327cbe7b5c",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "albuns",
+            "ef4aed9e-6f66-444a-8425-c3327cbe7b5c"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Deletar Album",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/albuns/ef4aed9e-6f66-444a-8425-c3327cbe7b5c",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "albuns",
+            "ef4aed9e-6f66-444a-8425-c3327cbe7b5c"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar Musica",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Ive seen it\",\n  \"duracaoSegundos\": 259,\n  \"numeroFaixa\": 1,\n  \"album\": { \"id\": \"ef4aed9e-6f66-444a-8425-c3327cbe7b5c\" },\n  \"artista\": { \"id\": \"c5216ac9-b291-44f0-a6d7-bfc638bbbb97\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/musicas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "musicas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Listar Musicas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/musicas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "musicas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar musica por id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/musicas/7cae8587-cb5c-48b3-98b2-0bdaa25677fb",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "musicas",
+            "7cae8587-cb5c-48b3-98b2-0bdaa25677fb"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizar Musica",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"I've Seen It\",\n  \"duracaoSegundos\": 259,\n  \"numeroFaixa\": 8,\n  \"album\": { \"id\": \"ef4aed9e-6f66-444a-8425-c3327cbe7b5c\" },\n  \"artista\": { \"id\": \"c5216ac9-b291-44f0-a6d7-bfc638bbbb97\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/musicas/7cae8587-cb5c-48b3-98b2-0bdaa25677fb",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "musicas",
+            "7cae8587-cb5c-48b3-98b2-0bdaa25677fb"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Deletar musica",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/musicas/7cae8587-cb5c-48b3-98b2-0bdaa25677fb",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "musicas",
+            "7cae8587-cb5c-48b3-98b2-0bdaa25677fb"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Reproduzir musica",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-USER-ID",
+            "value": "7cae8587-cb5c-48b3-98b2-0bdaa25677fb",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/musicas/7cae8587-cb5c-48b3-98b2-0bdaa25677fb/reproduzir",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "musicas",
+            "7cae8587-cb5c-48b3-98b2-0bdaa25677fb",
+            "reproduzir"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar Playlist",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Favoritas\",\n  \"publica\": true,\n  \"usuario\": { \"id\": \"368e4fc0-1e6a-4d33-aa72-d07c2f6d25f9\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/playlists",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "playlists"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Listar Playlists",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Minhas Favoritas\",\n  \"publica\": true,\n  \"usuario\": { \"id\": \"368e4fc0-1e6a-4d33-aa72-d07c2f6d25f9\" }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/playlists",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "playlists"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar Playlist por id",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Minhas Favoritas\",\n  \"publica\": true,\n  \"usuario\": { \"id\": \"368e4fc0-1e6a-4d33-aa72-d07c2f6d25f9\" }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/playlists/a0db3757-e1c1-44b6-9d03-a8941e7c524f",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "playlists",
+            "a0db3757-e1c1-44b6-9d03-a8941e7c524f"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizar Playlist",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Favoritas Atualizada\",\n  \"publica\": false,\n  \"usuario\": { \"id\": \"a0db3757-e1c1-44b6-9d03-a8941e7c524f\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/playlists/a0db3757-e1c1-44b6-9d03-a8941e7c524f",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "playlists",
+            "a0db3757-e1c1-44b6-9d03-a8941e7c524f"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Deletar Playlist",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Minhas Favoritas\",\n  \"publica\": true,\n  \"usuario\": { \"id\": \"368e4fc0-1e6a-4d33-aa72-d07c2f6d25f9\" }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/playlists/a0db3757-e1c1-44b6-9d03-a8941e7c524f",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "playlists",
+            "a0db3757-e1c1-44b6-9d03-a8941e7c524f"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add musica na playlist",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-USER-ID",
+            "value": "368e4fc0-1e6a-4d33-aa72-d07c2f6d25f9",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Minhas Favoritas\",\n  \"publica\": true,\n  \"usuario\": { \"id\": \"368e4fc0-1e6a-4d33-aa72-d07c2f6d25f9\" }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/playlists/a0db3757-e1c1-44b6-9d03-a8941e7c524f/musicas/7cae8587-cb5c-48b3-98b2-0bdaa25677fb",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "playlists",
+            "a0db3757-e1c1-44b6-9d03-a8941e7c524f",
+            "musicas",
+            "7cae8587-cb5c-48b3-98b2-0bdaa25677fb"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Listar Historico",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/historicos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "historicos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar historico por id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/historicos/{id}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "historicos",
+            "{id}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Deletar historico",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/historicos/{id}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "historicos",
+            "{id}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Historico por usuario",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/historicos/368e4fc0-1e6a-4d33-aa72-d07c2f6d25f9",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "historicos",
+            "368e4fc0-1e6a-4d33-aa72-d07c2f6d25f9"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Top 10",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/relatorios/top-musicas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "relatorios",
+            "top-musicas"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
