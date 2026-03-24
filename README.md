@@ -9,7 +9,7 @@ Executar:
    ./mvnw spring-boot:run
    ```
 
-E depois abir em:
+E depois abrir em:
    ```
    http://localhost:8080
    ```
