@@ -21,17 +21,17 @@ public class ArtistaController {
     }
 
     @GetMapping("/artistas/{id}")
-    public Artista getArtista(@PathVariable Long id) {
+    public Artista getArtista(@PathVariable String id) {
         return artistaService.getArtista(id);
     }
 
     @PutMapping("/artistas/{id}")
-    public Artista atualizarArtista(@PathVariable Long id, @RequestBody Artista dados) {
+    public Artista atualizarArtista(@PathVariable String id, @RequestBody Artista dados) {
         return artistaService.atualizarArtista(id, dados);
     }
 
     @DeleteMapping("/artistas/{id}")
-    public void deleteArtista(@PathVariable Long id) {
+    public void deleteArtista(@PathVariable String id) {
         artistaService.deleteArtista(id);
     }
 }

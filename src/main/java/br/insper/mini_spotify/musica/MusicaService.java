@@ -1,20 +1,22 @@
 package br.insper.mini_spotify.musica;
 
+import br.insper.mini_spotify.historico.Historico;
+import br.insper.mini_spotify.historico.HistoricoService;
 import br.insper.mini_spotify.relatorios.Top10;
 import br.insper.mini_spotify.usuario.Usuario;
 import br.insper.mini_spotify.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class MusicaService {
 
-    private HashMap<Long, Musica> musicas = new HashMap<>();
+    private HashMap<String, Musica> musicas = new HashMap<>();
+
+    @Autowired
+    private HistoricoService historicoService;
 
     @Autowired
     private UsuarioService usuarioService;
@@ -23,6 +25,8 @@ public class MusicaService {
         if (musica.getTitulo() == null) {
             throw new RuntimeException("Dados inválidos");
         }
+        musica.setId(UUID.randomUUID().toString());
+        musica.setTotalReproducoes(0L);
         musicas.put(musica.getId(), musica);
         return musica;
     }
@@ -31,7 +35,7 @@ public class MusicaService {
         return musicas.values();
     }
 
-    public Musica getMusica(Long id) {
+    public Musica getMusica(String id) {
         Musica musica = musicas.get(id);
         if (musica == null) {
             throw new RuntimeException("Música não encontrada");
@@ -39,7 +43,7 @@ public class MusicaService {
         return musica;
     }
 
-    public Musica atualizarMusica(Long id, Musica mus) {
+    public Musica atualizarMusica(String id, Musica mus) {
         Musica musica = getMusica(id);
         musica.setTitulo(mus.getTitulo());
         musica.setDuracaoSegundos(mus.getDuracaoSegundos());
@@ -50,12 +54,12 @@ public class MusicaService {
         return musica;
     }
 
-    public void deleteMusica(Long id) {
+    public void deleteMusica(String id) {
         Musica musica = getMusica(id);
         musicas.remove(id);
     }
 
-    public Musica reproduzirMusica(Long id, Long userId) {
+    public Musica reproduzirMusica(String id, String userId) {
         Usuario usuario = usuarioService.getUsuario(userId);
 
         if (!usuario.isAtivo()) {
@@ -64,6 +68,13 @@ public class MusicaService {
 
         Musica musica = getMusica(id);
         musica.setTotalReproducoes(musica.getTotalReproducoes() + 1);
+
+        // registra no historico
+        Historico historico = new Historico();
+        historico.setUsuario(usuario);
+        historico.setMusica(musica);
+        historicoService.registrarHistorico(historico);
+
         return musica;
     }
 

@@ -21,17 +21,17 @@ public class UsuarioController {
     }
 
     @GetMapping("/usuarios/{id}")
-    public Usuario getUsuario(@PathVariable Long id) {
+    public Usuario getUsuario(@PathVariable String id) {
         return usuarioService.getUsuario(id);
     }
 
     @PutMapping("/usuarios/{id}")
-    public Usuario atualizarUsuario(@PathVariable Long id, @RequestBody Usuario dados) {
+    public Usuario atualizarUsuario(@PathVariable String id, @RequestBody Usuario dados) {
         return usuarioService.atualizarUsuario(id, dados);
     }
 
-    @DeleteMapping("/usuario/{id}")
-    public void deleteUsuario(@PathVariable Long id) {
+    @DeleteMapping("/usuarios/{id}")
+    public void deleteUsuario(@PathVariable String id) {
         usuarioService.deleteUsuario(id);
     }
 }

@@ -4,16 +4,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.UUID;
 
 @Service
 public class AlbumService {
 
-    private HashMap<Long, Album> albuns = new HashMap<>();
+    private HashMap<String, Album> albuns = new HashMap<>();
 
     public Album criarAlbum(Album album) {
         if (album.getTitulo() == null) {
             throw new RuntimeException("Dados inválidos");
         }
+        album.setId(UUID.randomUUID().toString());
         albuns.put(album.getId(), album);
         return album;
     }
@@ -22,7 +24,7 @@ public class AlbumService {
         return albuns.values();
     }
 
-    public Album getAlbum(Long id) {
+    public Album getAlbum(String id) {
         Album album = albuns.get(id);
         if (album == null) {
             throw new RuntimeException("Album não encontrado");
@@ -30,7 +32,7 @@ public class AlbumService {
         return album;
     }
 
-    public Album atualizarAlbum(Long id, Album alb) {
+    public Album atualizarAlbum(String id, Album alb) {
         Album album = getAlbum(id);
         album.setTitulo(alb.getTitulo());
         album.setDataLancamento(alb.getDataLancamento());
@@ -38,8 +40,7 @@ public class AlbumService {
         return album;
     }
 
-    public void deleteAlbum(Long id) {
-        Album album = getAlbum(id);
+    public void deleteAlbum(String id) {
         albuns.remove(id);
     }
 

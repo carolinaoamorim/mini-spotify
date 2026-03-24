@@ -21,22 +21,22 @@ public class PlaylistController {
     }
 
     @GetMapping("/playlists/{id}")
-    public Playlist getPlaylist(@PathVariable Long id) {
+    public Playlist getPlaylist(@PathVariable String id) {
         return playlistService.getPlaylist(id);
     }
 
     @PutMapping("/playlists/{id}")
-    public Playlist atualizarPlaylist(@PathVariable Long id, @RequestBody Playlist playlist) {
+    public Playlist atualizarPlaylist(@PathVariable String id, @RequestBody Playlist playlist) {
         return playlistService.atualizarPlaylist(id, playlist);
     }
 
-    @DeleteMapping("/playlist/{id}")
-    public void deletePlaylist(@PathVariable Long id) {
+    @DeleteMapping("/playlists/{id}")
+    public void deletePlaylist(@PathVariable String id) {
         playlistService.deletePlaylist(id);
     }
 
     @PostMapping("/playlists/{playlistId}/musicas/{musicaId}")
-    public Playlist savePlaylist(@PathVariable Long playlistId, @PathVariable Long musicaId, @RequestHeader("X-USER-ID") Long usuarioId) {
+    public Playlist savePlaylist(@PathVariable String playlistId, @PathVariable String musicaId, @RequestHeader("X-USER-ID") String usuarioId) {
         return playlistService.adicionarMusica(playlistId, musicaId, usuarioId);
     }
 }

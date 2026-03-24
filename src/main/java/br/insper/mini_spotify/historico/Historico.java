@@ -7,16 +7,16 @@ import java.time.LocalDateTime;
 
 // escolhi o histório como a entidade a mais inspirado na própria função do spotify que mostra a ultima música que alguem reproduziu
 public class Historico {
-    private Long id;
+    private String id;
     private Usuario usuario;
     private Musica musica;
     private LocalDateTime dataReproducao;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

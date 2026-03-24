@@ -9,18 +9,18 @@ import java.util.List;
 
 public class Playlist {
 
-    private Long id;
+    private String id;
     private String nome;
     private boolean publica;
     private LocalDateTime dataCriacao;
     private Usuario usuario;
     private List<Musica> musicas = new ArrayList<>();
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

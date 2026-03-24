@@ -5,7 +5,7 @@ import br.insper.mini_spotify.artista.Artista;
 
 public class Musica {
 
-    private Long id;
+    private String id;
     private String titulo;
     private int duracaoSegundos;
     private int numeroFaixa;
@@ -13,11 +13,11 @@ public class Musica {
     private Artista artista;
     private Long totalReproducoes;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

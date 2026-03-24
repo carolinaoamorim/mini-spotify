@@ -24,23 +24,23 @@ public class MusicaController {
     }
 
     @GetMapping("/musicas/{id}")
-    public Musica getMusica(@PathVariable Long id) {
+    public Musica getMusica(@PathVariable String id) {
         return musicaService.getMusica(id);
     }
 
     @PutMapping("/musicas/{id}")
-    public Musica atualizarMusica(@PathVariable Long id, @RequestBody Musica dados) {
+    public Musica atualizarMusica(@PathVariable String id, @RequestBody Musica dados) {
         return musicaService.atualizarMusica(id, dados);
     }
 
     @DeleteMapping("/musicas/{id}")
-    public void deleteMusica(@PathVariable Long id) {
+    public void deleteMusica(@PathVariable String id) {
         musicaService.deleteMusica(id);
     }
 
     // reproduzir musica
     @PostMapping("/musicas/{id}/reproduzir")
-    public Musica reproduzirMusica(@PathVariable Long id, @RequestHeader("X-USER-ID") Long userId) {
+    public Musica reproduzirMusica(@PathVariable String id, @RequestHeader("X-USER-ID") String userId) {
         return musicaService.reproduzirMusica(id, userId);
     }
 

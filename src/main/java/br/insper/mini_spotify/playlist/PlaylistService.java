@@ -5,12 +5,14 @@ import br.insper.mini_spotify.musica.MusicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.UUID;
 
 @Service
 public class PlaylistService {
-    private HashMap<Long, Playlist> playlists = new HashMap<>();
+    private HashMap<String, Playlist> playlists = new HashMap<>();
 
     @Autowired
     private MusicaService musicaService;
@@ -19,6 +21,8 @@ public class PlaylistService {
         if (playlist.getNome() == null) {
             throw new RuntimeException("Dados inválidos");
         }
+        playlist.setId(UUID.randomUUID().toString());
+        playlist.setDataCriacao(LocalDateTime.now());
         playlists.put(playlist.getId(), playlist);
         return playlist;
     }
@@ -27,7 +31,7 @@ public class PlaylistService {
         return playlists.values();
     }
 
-    public Playlist getPlaylist(Long id) {
+    public Playlist getPlaylist(String id) {
         Playlist playlist = playlists.get(id);
         if (playlist == null) {
             throw new RuntimeException("Playlist não encontrada");
@@ -35,7 +39,7 @@ public class PlaylistService {
         return playlist;
     }
 
-    public Playlist atualizarPlaylist(Long id, Playlist play) {
+    public Playlist atualizarPlaylist(String id, Playlist play) {
         Playlist playlist = getPlaylist(id);
         playlist.setNome(play.getNome());
         playlist.setPublica(play.isPublica());
@@ -45,13 +49,13 @@ public class PlaylistService {
         return playlist;
     }
 
-    public void deletePlaylist(Long id) {
+    public void deletePlaylist(String id) {
         Playlist playlist = getPlaylist(id);
         playlists.remove(id);
     }
 
-    public Playlist adicionarMusica(Long id, Long musicaId, Long usuarioId) {
-        Playlist playlist = playlists.get(id);
+    public Playlist adicionarMusica(String id, String musicaId, String usuarioId) {
+        Playlist playlist = getPlaylist(id);
 
         if (!playlist.getUsuario().getId().equals(usuarioId)) {
             throw new RuntimeException("Apenas o dono pode adicionar músicas");

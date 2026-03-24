@@ -2,16 +2,16 @@ package br.insper.mini_spotify.artista;
 
 public class Artista {
 
-    private Long id;
+    private String id;
     private String nome;
     private String generoMusical;
     private String paisOrigem;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

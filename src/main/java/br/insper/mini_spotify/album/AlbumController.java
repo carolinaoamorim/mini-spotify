@@ -21,17 +21,17 @@ public class AlbumController {
     }
 
     @GetMapping("/albuns/{id}")
-    public Album getAlbum(@PathVariable Long id) {
+    public Album getAlbum(@PathVariable String id) {
         return albumService.getAlbum(id);
     }
 
     @PutMapping("/albuns/{id}")
-    public Album atualizarAlbum(@PathVariable Long id, @RequestBody Album dados) {
+    public Album atualizarAlbum(@PathVariable String id, @RequestBody Album dados) {
         return albumService.atualizarAlbum(id, dados);
     }
 
     @DeleteMapping("/albuns/{id}")
-    public void deleteAlbum(@PathVariable Long id) {
+    public void deleteAlbum(@PathVariable String id) {
         albumService.deleteAlbum(id);
     }
 }
