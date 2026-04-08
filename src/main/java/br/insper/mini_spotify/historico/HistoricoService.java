@@ -1,5 +1,6 @@
 package br.insper.mini_spotify.historico;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -8,45 +9,34 @@ import java.util.*;
 @Service
 public class HistoricoService {
 
-    private HashMap<String, Historico> historicos = new HashMap<>();
+    @Autowired
+    private HistoricoRepository historicoRepository;
 
     public Historico registrarHistorico(Historico historico) {
-        historico.setDataReproducao(LocalDateTime.now());
-        historico.setId(UUID.randomUUID().toString());
-        historicos.put(historico.getId(), historico);
-        return historico;
+        return historicoRepository.save(historico);
     }
 
     public Historico getHistorico(String id) {
-        Historico historico = historicos.get(id);
-        if (historico == null) {
-            throw new RuntimeException("Histórico não encontrado");
-        }
-        return historico;
+        return historicoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Histórico não encontrado"));
     }
 
-    public Collection<Historico> listarHistorico() {
-        return historicos.values();
+    public List<Historico> listarHistorico() {
+        return historicoRepository.findAll();
     }
 
     public List<Historico> listarPorUsuario(String usuarioId) {
-        List<Historico> resultado = new ArrayList<>();
-        for (Historico history : historicos.values()) {
-            if (history.getUsuario().getId().equals(usuarioId)) {
-                resultado.add(history);
-            }
-        }
-        return resultado;
+        return historicoRepository.findByUsuarioId(usuarioId);
     }
 
     public Historico atualizarHistorico(String id, Historico dados) {
         Historico historico = getHistorico(id);
         historico.setUsuario(dados.getUsuario());
         historico.setMusica(dados.getMusica());
-        return historico;
+        return historicoRepository.save(historico);
     }
 
     public void deletarHistorico(String id) {
-        historicos.remove(id);
+        historicoRepository.deleteById(id);
     }
 }

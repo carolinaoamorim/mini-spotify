@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 public class PlaylistController {
@@ -11,7 +12,7 @@ public class PlaylistController {
     private PlaylistService playlistService;
 
     @GetMapping("/playlists")
-    public Collection<Playlist> getPlaylists() {
+    public List<Playlist> getPlaylists() {
         return playlistService.listarPlaylist();
     }
 

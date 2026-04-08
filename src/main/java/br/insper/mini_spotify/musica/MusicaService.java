@@ -17,7 +17,8 @@ import java.util.*;
 @Service
 public class MusicaService {
 
-    private HashMap<String, Musica> musicas = new HashMap<>();
+    @Autowired
+    private MusicaRepository musicaRepository;
 
     @Autowired
     private HistoricoService historicoService;
@@ -41,22 +42,16 @@ public class MusicaService {
         musica.setArtista(artista);
         musica.setAlbum(album);
 
-        musica.setId(UUID.randomUUID().toString());
-        musica.setTotalReproducoes(0L);
-        musicas.put(musica.getId(), musica);
-        return musica;
+        return musicaRepository.save(musica);
     }
 
-    public Collection<Musica> listarMusica() {
-        return musicas.values();
+    public List<Musica> listarMusica() {
+        return musicaRepository.findAll();
     }
 
     public Musica getMusica(String id) {
-        Musica musica = musicas.get(id);
-        if (musica == null) {
-            throw new RuntimeException("Música não encontrada");
-        }
-        return musica;
+        return musicaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Música não encontrada"));
     }
 
     public Musica atualizarMusica(String id, Musica mus) {
@@ -67,12 +62,11 @@ public class MusicaService {
         musica.setAlbum(mus.getAlbum());
         musica.setArtista(mus.getArtista());
         musica.setTotalReproducoes(mus.getTotalReproducoes());
-        return musica;
+        return musicaRepository.save(musica);
     }
 
     public void deleteMusica(String id) {
-        Musica musica = getMusica(id);
-        musicas.remove(id);
+        musicaRepository.deleteById(id);
     }
 
     public Musica reproduzirMusica(String id, String userId) {
@@ -84,6 +78,7 @@ public class MusicaService {
 
         Musica musica = getMusica(id);
         musica.setTotalReproducoes(musica.getTotalReproducoes() + 1);
+        musicaRepository.save(musica);
 
         // registra no historico
         Historico historico = new Historico();
@@ -96,23 +91,17 @@ public class MusicaService {
 
     public List<Top10> getTop10() {
 
-        List<Musica> ordenadas = new ArrayList<>(musicas.values());
+        List<Musica> ordenadas = musicaRepository.findTop10ByOrderByTotalReproducoesDesc();
         // funcao do java que ordena a lista antes de percorrer
         ordenadas.sort((musica1, musica2) -> Long.compare(musica2.getTotalReproducoes(), musica1.getTotalReproducoes()));
 
         List<Top10> resultado = new ArrayList<>();
 
-        int limite = ordenadas.size();
-        if (limite > 10) {
-            limite = 10;
+        for (Musica m : ordenadas) {
+            resultado.add(new Top10(m.getTitulo(), m.getArtista().getNome(), m.getTotalReproducoes()));
         }
-
-        for (int i = 0; i < limite; i++) {
-            Musica m = ordenadas.get(i);
-            resultado.add(new Top10( m.getTitulo(), m.getArtista().getNome(), m.getTotalReproducoes() ));
-        }
-
         return resultado;
+
     }
 
 }

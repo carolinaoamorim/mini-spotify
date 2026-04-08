@@ -3,7 +3,7 @@ package br.insper.mini_spotify.artista;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
+import java.util.List;
 
 @RestController
 public class ArtistaController {
@@ -11,7 +11,7 @@ public class ArtistaController {
     private ArtistaService artistaService;
 
     @GetMapping("/artistas")
-    public Collection<Artista> getArtistas() {
+    public List<Artista> getArtistas() {
         return artistaService.listarArtistas();
     }
 

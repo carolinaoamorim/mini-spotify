@@ -1,45 +1,37 @@
 package br.insper.mini_spotify.album;
 
 import br.insper.mini_spotify.artista.Artista;
-import br.insper.mini_spotify.artista.ArtistaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.List;
 
 @Service
 public class AlbumService {
 
-    private HashMap<String, Album> albuns = new HashMap<>();
+    @Autowired
+    private AlbumRepository albumRepository;
 
     @Autowired
-    private ArtistaService artistaService;
+    private ArtistaRepository artistaRepository;
 
     public Album criarAlbum(Album album) {
         if (album.getTitulo() == null) {
             throw new RuntimeException("Dados inválidos");
         }
 
-        Artista artista = artistaService.getArtista(album.getArtista().getId());
+        Artista artista = artistaRepository.findById(album.getArtista().getId()).orElseThrow(() -> new RuntimeException("Album não encontrado"));
         album.setArtista(artista);
-
-        album.setId(UUID.randomUUID().toString());
-        albuns.put(album.getId(), album);
-        return album;
+        return albumRepository.save(album);
     }
 
-    public Collection<Album> listarAlbum() {
-        return albuns.values();
+    public List<Album> listarAlbum() {
+        return albumRepository.findAll();
     }
 
     public Album getAlbum(String id) {
-        Album album = albuns.get(id);
-        if (album == null) {
-            throw new RuntimeException("Album não encontrado");
-        }
-        return album;
+        return albumRepository.findById(id).orElseThrow(() -> new RuntimeException("Album não encontrado"));
     }
 
     public Album atualizarAlbum(String id, Album alb) {
@@ -47,11 +39,12 @@ public class AlbumService {
         album.setTitulo(alb.getTitulo());
         album.setDataLancamento(alb.getDataLancamento());
         album.setArtista(alb.getArtista());
-        return album;
+        return albumRepository.save(album);
     }
 
     public void deleteAlbum(String id) {
-        albuns.remove(id);
+        Album album = getAlbum(id);
+        albumRepository.delete(album);
     }
 
 }

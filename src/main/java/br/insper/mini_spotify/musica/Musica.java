@@ -2,70 +2,39 @@ package br.insper.mini_spotify.musica;
 
 import br.insper.mini_spotify.album.Album;
 import br.insper.mini_spotify.artista.Artista;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
+@Getter
+@Setter
+@Entity
 public class Musica {
 
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
+
+    @Column(nullable = false)
     private String titulo;
+
+    @Column(nullable = false)
     private int duracaoSegundos;
+
+    @Column(nullable = false)
     private int numeroFaixa;
+
+    @ManyToOne
+    @JoinColumn(name = "album_id")
     private Album album;
+
+    @ManyToOne
+    @JoinColumn(name = "artista_id")
     private Artista artista;
-    private Long totalReproducoes;
 
-    public String getId() {
-        return id;
-    }
+    @Column
+    private Long totalReproducoes = 0L;
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public int getDuracaoSegundos() {
-        return duracaoSegundos;
-    }
-
-    public void setDuracaoSegundos(int duracaoSegundos) {
-        this.duracaoSegundos = duracaoSegundos;
-    }
-
-    public int getNumeroFaixa() {
-        return numeroFaixa;
-    }
-
-    public void setNumeroFaixa(int numeroFaixa) {
-        this.numeroFaixa = numeroFaixa;
-    }
-
-    public Album getAlbum() {
-        return album;
-    }
-
-    public void setAlbum(Album album) {
-        this.album = album;
-    }
-
-    public Artista getArtista() {
-        return artista;
-    }
-
-    public void setArtista(Artista artista) {
-        this.artista = artista;
-    }
-
-    public Long getTotalReproducoes() {
-        return totalReproducoes;
-    }
-
-    public void setTotalReproducoes(Long totalReproducoes) {
-        this.totalReproducoes = totalReproducoes;
-    }
 }

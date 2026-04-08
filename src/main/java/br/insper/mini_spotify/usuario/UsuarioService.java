@@ -1,36 +1,32 @@
 package br.insper.mini_spotify.usuario;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.List;
 
 @Service
 public class UsuarioService {
 
-    private HashMap<String, Usuario> usuarios = new HashMap<>();
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public Usuario criarUsuario(Usuario usuario) {
         if (usuario.getNome() == null || usuario.getEmail() == null) {
             throw new RuntimeException("Dados inválidos");
         }
-        usuario.setId(UUID.randomUUID().toString());
         usuario.setAtivo(true);
-        usuario.setDataCriacao(LocalDateTime.now());
-        usuarios.put(usuario.getId(), usuario);
-        return usuario;
+        return usuarioRepository.save(usuario);
     }
 
-    public Collection<Usuario> listarUsuarios() {
-        return usuarios.values().stream().filter(Usuario::isAtivo).toList();
+    public List<Usuario> listarUsuarios() {
+        return usuarioRepository.findByAtivoTrue();
     }
-
 
     public Usuario getUsuario(String id) {
-        Usuario usuario = usuarios.get(id);
-        if (usuario == null || !usuario.isAtivo()) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        if (!usuario.isAtivo()) {
             throw new RuntimeException("Usuário não encontrado");
         }
         return usuario;
@@ -41,12 +37,13 @@ public class UsuarioService {
         usuario.setNome(user.getNome());
         usuario.setEmail(user.getEmail());
         usuario.setTipoPlano(user.getTipoPlano());
-        return usuario;
+        return usuarioRepository.save(usuario);
     }
 
     public void deleteUsuario(String id) {
         Usuario usuario = getUsuario(id);
         usuario.setAtivo(false);
+        usuarioRepository.save(usuario);
     }
 
 }

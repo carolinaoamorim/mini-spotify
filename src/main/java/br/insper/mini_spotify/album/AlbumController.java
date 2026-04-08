@@ -3,7 +3,7 @@ package br.insper.mini_spotify.album;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
+import java.util.List;
 
 @RestController
 public class AlbumController {
@@ -11,7 +11,7 @@ public class AlbumController {
     private AlbumService albumService;
 
     @GetMapping("/albuns")
-    public Collection<Album> getAlbuns() {
+    public List<Album> getAlbuns() {
         return albumService.listarAlbum();
     }
 

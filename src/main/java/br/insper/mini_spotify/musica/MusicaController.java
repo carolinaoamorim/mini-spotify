@@ -3,7 +3,7 @@ package br.insper.mini_spotify.musica;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
+import java.util.List;
 
 @RestController
 public class MusicaController {
@@ -14,7 +14,7 @@ public class MusicaController {
     // rotas obrigatorias
 
     @GetMapping("/musicas")
-    public Collection<Musica> getMusicas() {
+    public List<Musica> getMusicas() {
         return musicaService.listarMusica();
     }
 

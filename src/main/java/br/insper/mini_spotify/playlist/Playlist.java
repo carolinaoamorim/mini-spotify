@@ -2,66 +2,47 @@ package br.insper.mini_spotify.playlist;
 
 import br.insper.mini_spotify.musica.Musica;
 import br.insper.mini_spotify.usuario.Usuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@Entity
 public class Playlist {
 
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
+
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private boolean publica;
+
+    @CreationTimestamp
     private LocalDateTime dataCriacao;
+
+    @OneToMany
+    @JoinColumn(name = "usuario_id")
+    @JsonIgnore
     private Usuario usuario;
+
+    @ManyToMany
+    @JoinTable(
+            name = "playlist_musica",
+            joinColumns = @JoinColumn(name = "playlist_id"),
+            inverseJoinColumns = @JoinColumn(name = "musica_id")
+    )
     private List<Musica> musicas = new ArrayList<>();
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public boolean isPublica() {
-        return publica;
-    }
-
-    public void setPublica(boolean publica) {
-        this.publica = publica;
-    }
-
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public List<Musica> getMusicas() {
-        return musicas;
-    }
-
-    public void setMusicas(List<Musica> musicas) {
-        this.musicas = musicas;
-    }
 
 }

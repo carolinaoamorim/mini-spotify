@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 public class UsuarioController {
@@ -11,7 +12,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping("/usuarios")
-    public Collection<Usuario> getUsuarios() {
+    public List<Usuario> getUsuarios() {
         return usuarioService.listarUsuarios();
     }
 

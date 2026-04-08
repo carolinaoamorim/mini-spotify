@@ -5,43 +5,32 @@ import br.insper.mini_spotify.usuario.Usuario;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
+
 // escolhi o histório como a entidade a mais inspirado na própria função do spotify que mostra a ultima música que alguem reproduziu
+@Getter
+@Setter
+@Entity
 public class Historico {
+
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "musica_id")
     private Musica musica;
+
+    @CreationTimestamp
     private LocalDateTime dataReproducao;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Musica getMusica() {
-        return musica;
-    }
-
-    public void setMusica(Musica musica) {
-        this.musica = musica;
-    }
-
-    public LocalDateTime getDataReproducao() {
-        return dataReproducao;
-    }
-
-    public void setDataReproducao(LocalDateTime dataReproducao) {
-        this.dataReproducao = dataReproducao;
-    }
 
 }
