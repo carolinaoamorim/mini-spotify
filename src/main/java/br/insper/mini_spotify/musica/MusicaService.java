@@ -93,7 +93,6 @@ public class MusicaService {
 
         List<Musica> ordenadas = musicaRepository.findTop10ByOrderByTotalReproducoesDesc();
         // funcao do java que ordena a lista antes de percorrer
-        ordenadas.sort((musica1, musica2) -> Long.compare(musica2.getTotalReproducoes(), musica1.getTotalReproducoes()));
 
         List<Top10> resultado = new ArrayList<>();
 

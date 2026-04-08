@@ -1,10 +1,10 @@
 package br.insper.mini_spotify.album;
 
 import br.insper.mini_spotify.artista.Artista;
+import br.insper.mini_spotify.artista.ArtistaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -13,15 +13,14 @@ public class AlbumService {
     @Autowired
     private AlbumRepository albumRepository;
 
-    @Autowired
-    private ArtistaRepository artistaRepository;
+    private ArtistaService artistaService;
 
     public Album criarAlbum(Album album) {
         if (album.getTitulo() == null) {
             throw new RuntimeException("Dados inválidos");
         }
 
-        Artista artista = artistaRepository.findById(album.getArtista().getId()).orElseThrow(() -> new RuntimeException("Album não encontrado"));
+        Artista artista = artistaService.getArtista(album.getArtista().getId());
         album.setArtista(artista);
         return albumRepository.save(album);
     }

@@ -32,7 +32,7 @@ public class Playlist {
     @CreationTimestamp
     private LocalDateTime dataCriacao;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "usuario_id")
     @JsonIgnore
     private Usuario usuario;
